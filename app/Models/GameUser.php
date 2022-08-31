@@ -18,6 +18,10 @@ class GameUser extends Pivot
         'position',
     ];
 
+    protected $casts = [
+        'winner' => 'boolean',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

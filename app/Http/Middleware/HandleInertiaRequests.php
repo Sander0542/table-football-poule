@@ -40,7 +40,15 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'locale' => function () {
+                return app()->getLocale();
+            },
+            'locales' => function () {
+                return config('app.locales');
+            },
+            'fallbackLocale' => function () {
+                return config('app.fallback_locale');
+            },
         ]);
     }
 }

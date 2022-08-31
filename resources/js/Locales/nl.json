@@ -1,0 +1,20 @@
+{
+    "datetimeFormats": {
+        "long": {
+            "day": "numeric",
+            "month": "long",
+            "year": "numeric",
+            "hour": "numeric",
+            "minute": "numeric"
+        },
+        "short": {
+            "day": "numeric",
+            "month": "short",
+            "year": "numeric"
+        },
+        "time": {
+            "hour": "numeric",
+            "minute": "numeric"
+        }
+    }
+}
