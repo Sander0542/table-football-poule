@@ -1,0 +1,83 @@
+name: Laravel
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+
+      - name: 'Setup Laravel'
+        uses: Sander0542/setup-laravel@main
+        with:
+          php-version: '8.1'
+          node-version: 16
+          env-file: '.env.ci'
+
+      - name: 'Build frontend'
+        run: npm run build
+
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+
+      - name: 'Setup Laravel'
+        uses: Sander0542/setup-laravel@main
+        with:
+          php-version: '8.1'
+          env-file: '.env.ci'
+
+      - name: 'Run Linter'
+        run: vendor/bin/pint --test
+
+  migrations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+
+      - name: 'Setup Laravel'
+        uses: Sander0542/setup-laravel@main
+        with:
+          php-version: '8.1'
+          env-file: '.env.ci'
+
+      - name: 'Create database'
+        run: |
+          sudo systemctl start mysql
+          mysql --user="root" --password="root" -e "CREATE DATABASE laravel character set UTF8mb4 collate utf8mb4_unicode_ci;"
+
+      - name: 'Run migrations'
+        run: php artisan migrate --force --seed
+
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+
+      - name: 'Setup Laravel'
+        uses: Sander0542/setup-laravel@main
+        with:
+          php-version: '8.1'
+          env-file: '.env.ci'
+
+      - name: 'Create database'
+        run: |
+          sudo systemctl start mysql
+          mysql --user="root" --password="root" -e "CREATE DATABASE laravel character set UTF8mb4 collate utf8mb4_unicode_ci;"
+
+      - name: 'Run tests'
+        run: vendor/bin/phpunit
