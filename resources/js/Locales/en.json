@@ -16,5 +16,30 @@
             "hour": "numeric",
             "minute": "numeric"
         }
+    },
+    "common": {
+        "action": {
+            "edit": "Edit",
+            "view": "View"
+        }
+    },
+    "header": {
+        "dashboard": "Dashboard",
+        "matches": "Matches"
+    },
+    "pages": {
+        "games": {
+            "title": "Matches",
+            "table": {
+                "played_at": "Played At",
+                "score": "Score",
+                "blue-vs-red": "Blue vs Red",
+                "players": "Players",
+                "empty": "No matches found"
+            },
+            "action": {
+                "create": "Create Match"
+            }
+        }
     }
 }
