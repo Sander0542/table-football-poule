@@ -35,9 +35,6 @@ export function setI18nLanguage(i18n, locale) {
 }
 
 function setupInertia(i18n) {
-    Inertia.on('before', async event => {
-        console.log(event.detail);
-    });
     Inertia.on('success', async event => {
         setI18nLanguage(i18n, event.detail.page.props.locale)
     })
