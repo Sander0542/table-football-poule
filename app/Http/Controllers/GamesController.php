@@ -17,7 +17,7 @@ class GamesController extends Controller
     public function index()
     {
         return Inertia::render('Games/Index', [
-            'games' => Game::with('users')->get(),
+            'games' => Game::with('users')->orderByDesc('played_at')->get(),
         ]);
     }
 
