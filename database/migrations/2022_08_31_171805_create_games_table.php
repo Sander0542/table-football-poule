@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->constrained();
-            $table->timestamp('played_at');
+            $table->dateTime('played_at');
             $table->integer('score_blue');
             $table->integer('score_red');
         });

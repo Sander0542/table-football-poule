@@ -14,6 +14,7 @@ class Game extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'team_id',
         'score_blue',
         'score_red',
         'played_at',
@@ -35,5 +36,14 @@ class Game extends Model
     protected static function booted()
     {
         static::addGlobalScope(new CurrentTeamScope());
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function ($game) {
+            $game->users()->detach();
+        });
     }
 }
