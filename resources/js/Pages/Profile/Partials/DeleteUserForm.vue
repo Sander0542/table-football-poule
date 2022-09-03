@@ -1,12 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
-import JetActionSection from '@/Components/ActionSection.vue';
-import JetDialogModal from '@/Components/DialogModal.vue';
-import JetDangerButton from '@/Components/DangerButton.vue';
-import JetInput from '@/Components/Input.vue';
-import JetInputError from '@/Components/InputError.vue';
-import JetSecondaryButton from '@/Components/SecondaryButton.vue';
+import JetActionSection from '@/Components/Jetstream/ActionSection.vue';
+import JetDialogModal from '@/Components/Jetstream/DialogModal.vue';
+import JetDangerButton from '@/Components/Jetstream/DangerButton.vue';
+import JetInput from '@/Components/Jetstream/Input.vue';
+import JetInputError from '@/Components/Jetstream/InputError.vue';
+import JetSecondaryButton from '@/Components/Jetstream/SecondaryButton.vue';
 
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref(null);

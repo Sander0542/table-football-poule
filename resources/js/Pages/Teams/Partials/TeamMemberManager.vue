@@ -2,18 +2,18 @@
 import { ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 import { useForm, usePage } from '@inertiajs/inertia-vue3';
-import JetActionMessage from '@/Components/ActionMessage.vue';
-import JetActionSection from '@/Components/ActionSection.vue';
-import JetButton from '@/Components/Button.vue';
-import JetConfirmationModal from '@/Components/ConfirmationModal.vue';
-import JetDangerButton from '@/Components/DangerButton.vue';
-import JetDialogModal from '@/Components/DialogModal.vue';
-import JetFormSection from '@/Components/FormSection.vue';
-import JetInput from '@/Components/Input.vue';
-import JetInputError from '@/Components/InputError.vue';
-import JetLabel from '@/Components/Label.vue';
-import JetSecondaryButton from '@/Components/SecondaryButton.vue';
-import JetSectionBorder from '@/Components/SectionBorder.vue';
+import JetActionMessage from '@/Components/Jetstream/ActionMessage.vue';
+import JetActionSection from '@/Components/Jetstream/ActionSection.vue';
+import JetButton from '@/Components/Jetstream/Button.vue';
+import JetConfirmationModal from '@/Components/Jetstream/ConfirmationModal.vue';
+import JetDangerButton from '@/Components/Jetstream/DangerButton.vue';
+import JetDialogModal from '@/Components/Jetstream/DialogModal.vue';
+import JetFormSection from '@/Components/Jetstream/FormSection.vue';
+import JetInput from '@/Components/Jetstream/Input.vue';
+import JetInputError from '@/Components/Jetstream/InputError.vue';
+import JetLabel from '@/Components/Jetstream/Label.vue';
+import JetSecondaryButton from '@/Components/Jetstream/SecondaryButton.vue';
+import JetSectionBorder from '@/Components/Jetstream/SectionBorder.vue';
 
 const props = defineProps({
     team: Object,
