@@ -19,23 +19,54 @@
     },
     "common": {
         "action": {
+            "cancel": "Cancel",
             "edit": "Edit",
+            "save": "Save",
             "view": "View"
+        },
+        "label": {
+            "position": {
+                "offense": "Offense",
+                "defense": "Defense"
+            }
+        },
+        "color": {
+            "red": "Red",
+            "blue": "Blue"
         }
     },
     "header": {
         "dashboard": "Dashboard",
-        "matches": "Matches"
+        "matches": "Matches",
+        "team": {
+            "settings": "Team Settings",
+            "create": "Create Team"
+        }
     },
     "pages": {
         "games": {
-            "title": "Matches",
-            "table": {
+            "index": {
+                "title": "Matches"
+            },
+            "create": {
+                "title": "Create Match"
+            },
+            "edit": {
+                "title": "Edit Match"
+            },
+            "label": {
                 "played_at": "Played At",
                 "score": "Score",
-                "blue-vs-red": "Blue vs Red",
+                "score_blue": "@:pages.games.label.score @:common.color.blue",
+                "score_red": "@:pages.games.label.score @:common.color.red",
+                "blue-vs-red": "@:common.color.blue vs @:common.color.red",
+                "team": "Team",
+                "match": "Match",
+                "position": "Position",
+                "player": "Player",
                 "players": "Players",
-                "empty": "No matches found"
+                "choose-player": "Choose player",
+                "table-empty": "No matches found"
             },
             "action": {
                 "create": "Create Match"

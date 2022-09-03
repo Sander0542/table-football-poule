@@ -6,7 +6,6 @@
             <tr>
                 <th v-for="(row, index) in layout.columns" scope="col" :class="[
                     index === 0 ? 'sm:pl-6' : index === layout.columns.length -1 && !layout.edit && !layout.view ? 'relative sm:pr-6' : '',
-                    row.breakpoint ? `hidden ${row.breakpoint}:table-cell` : '',
                     'py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900'
                     ]"
                     v-text="$t(row.title)"></th>
@@ -16,18 +15,8 @@
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
             <tr v-if="data.data && data.data.length > 0" v-for="row in data.data" :key="row[layout.itemKey]">
-                <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-                    {{ getDescendantProp(row, layout.columns[0].key) }}
-                    <dl class="font-normal lg:hidden">
-                        <template v-for="column in layout.columns">
-                            <dt class="sr-only" v-text="column.title"></dt>
-                            <dd :class="['mt-1 truncate text-gray-700', column.breakpoint ? `${column.breakpoint}:hidden` : 'hidden',]">{{ getDescendantProp(row, column.key) }}</dd>
-                        </template>
-                    </dl>
-                </td>
-                <td v-for="column in layout.columns.slice(1, layout.columns.length)" :class="[
-                    column.breakpoint ? `hidden ${column.breakpoint}:table-cell` : '',
-                    'px-3 py-4 text-sm text-gray-500'
+                <td v-for="(column, index) in layout.columns" :class="[
+                    index > 0 ? 'px-3 py-4 text-sm text-gray-500' : 'w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6'
                     ]">
                     <slot v-if="this.$slots[`column-${column.key}`]" :name="`column-${column.key}`" :row="row"></slot>
                     <span v-else-if="column.renderFn">{{ column.renderFn(getDescendantProp(row, column.key), row) }}</span>

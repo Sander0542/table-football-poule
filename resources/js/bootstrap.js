@@ -1,4 +1,5 @@
 import _ from 'lodash';
+
 window._ = _;
 
 /**
@@ -8,6 +9,7 @@ window._ = _;
  */
 
 import axios from 'axios';
+
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -32,3 +34,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+Date.prototype.toDateTimeLocalString = function () {
+    const date = new Date(this);
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+
+    return date.toISOString().slice(0, 16);
+};
+
+Date.prototype.toLaravelString = function () {
+    return this.toISOString().slice(0, 19).replace('T', ' ');
+};

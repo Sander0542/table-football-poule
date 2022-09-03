@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Games\GameRequest;
 use App\Models\Game;
-use Illuminate\Http\Request;
+use Auth;
+use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -24,28 +28,47 @@ class GamesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-        //
+        $team = Auth::user()->currentTeam;
+        $users = $team->users;
+        $users->add($team->owner);
+
+        return Inertia::render('Games/Create', [
+            'users' => $users->sortBy('name')->values(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  GameRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(GameRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $users = $this->playersToUsers($data['players'], $data['score_blue'], $data['score_red']);
+
+        $game = Game::create([
+            'team_id' => Auth::user()->currentTeam->id,
+            'played_at' => $data['played_at'],
+            'score_blue' => $data['score_blue'],
+            'score_red' => $data['score_red'],
+        ]);
+
+        $game->users()->sync($users);
+
+        return redirect()->route('games.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Game  $game
+     * @param  Game  $game
      * @return \Illuminate\Http\Response
      */
     public function show(Game $game)
@@ -56,34 +79,84 @@ class GamesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
+     * @param  Game  $game
+     * @return Response
      */
     public function edit(Game $game)
     {
-        //
+        $team = Auth::user()->currentTeam;
+        $users = $team->users;
+        $users->add($team->owner);
+
+        return Inertia::render('Games/Edit', [
+            'users' => $users->sortBy('name')->values(),
+            'game' => $game,
+            'players' => $game->users->map(function ($user) {
+                return [
+                    'id' => $user->id,
+                    'team' => $user->pivot->team,
+                    'position' => $user->pivot->position,
+                ];
+            }),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
+     * @param  GameRequest  $request
+     * @param  Game  $game
+     * @return RedirectResponse
      */
-    public function update(Request $request, Game $game)
+    public function update(GameRequest $request, Game $game)
     {
-        //
+        $data = $request->validated();
+
+        $date = Carbon::parse($data['played_at']);
+
+        $users = $this->playersToUsers($data['players'], $data['score_blue'], $data['score_red']);
+
+        $game->update([
+            'played_at' => $date,
+            'score_blue' => $data['score_blue'],
+            'score_red' => $data['score_red'],
+        ]);
+        $game->users()->sync($users);
+
+        return redirect()->route('games.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
+     * @param  Game  $game
+     * @return RedirectResponse
      */
     public function destroy(Game $game)
     {
-        //
+        $game->delete();
+
+        return redirect()->route('games.index');
+    }
+
+    /**
+     * Convert the players array to a users array for syncing with the game.
+     *
+     * @param $players array The players to convert.
+     * @param $scoreBlue int The score of the blue team.
+     * @param $scoreRed int The score of the red team.
+     * @return Collection
+     */
+    private function playersToUsers(array $players, int $scoreBlue, int $scoreRed)
+    {
+        return collect($players)->mapWithKeys(function ($player) use ($scoreBlue, $scoreRed) {
+            return [
+                $player['id'] => [
+                    'team' => $player['team'],
+                    'position' => $player['position'],
+                    'winner' => $player['team'] === 'blue' ? $scoreBlue >= $scoreRed : $scoreRed >= $scoreBlue,
+                ]
+            ];
+        });
     }
 }
