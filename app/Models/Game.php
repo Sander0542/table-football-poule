@@ -26,11 +26,15 @@ class Game extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->using(GameUser::class)->withPivot([
-            'winner',
-            'team',
-            'position',
-        ]);
+        return $this->belongsToMany(User::class)
+            ->using(GameUser::class)
+            ->withPivot([
+                'winner',
+                'team',
+                'position',
+            ])
+            ->orderByPivot('team')
+            ->orderByPivot('position');
     }
 
     protected static function booted()

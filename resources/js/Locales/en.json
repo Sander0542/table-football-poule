@@ -28,7 +28,9 @@
             "position": {
                 "offense": "Offense",
                 "defense": "Defense"
-            }
+            },
+            "winner": "Winner",
+            "loser": "Loser"
         },
         "color": {
             "red": "Red",
@@ -54,6 +56,9 @@
             "edit": {
                 "title": "Edit Match"
             },
+            "show": {
+                "title": "Match"
+            },
             "label": {
                 "played_at": "Played At",
                 "score": "Score",
@@ -66,7 +71,9 @@
                 "player": "Player",
                 "players": "Players",
                 "choose-player": "Choose player",
-                "table-empty": "No matches found"
+                "no-matches": "No matches found",
+                "no-players": "No players found",
+                "winner-loser": "@:common.label.winner @:common.label.loser"
             },
             "action": {
                 "create": "Create Match"

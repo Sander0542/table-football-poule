@@ -2,6 +2,7 @@
 import {Link} from '@inertiajs/inertia-vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import PlayersColumn from '@/Pages/Games/Partials/PlayersColumn.vue';
+import ScoreBadge from '@/Components/ScoreBadge.vue';
 import Table from '@/Components/Table.vue';
 import TableHeader from '@/Components/TableHeader.vue';
 
@@ -43,14 +44,13 @@ const tableLayout = {
             :data="games"
             :pagincation="true"
             :layout="tableLayout"
-            :empty-message="$t('pages.games.label.table-empty')"
+            :empty-message="$t('pages.games.label.no-matches')"
         >
             <template #column-played_at="{ row: game }">
                 <i18n-d tag="span" :value="game.played_at" format="long"></i18n-d>
             </template>
             <template #column-score="{ row: game }">
-                <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-blue-600 rounded-full">{{ game.score_blue }}</span>
-                <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">{{ game.score_red }}</span>
+                <ScoreBadge :blue="game.score_blue" :red="game.score_red"/>
             </template>
             <template #column-users="{ row: game }">
                 <PlayersColumn :players="game.users"/>

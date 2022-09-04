@@ -32,12 +32,8 @@ class GamesController extends Controller
      */
     public function create()
     {
-        $team = Auth::user()->currentTeam;
-        $users = $team->users;
-        $users->add($team->owner);
-
         return Inertia::render('Games/Create', [
-            'users' => $users->sortBy('name')->values(),
+            'users' => $this->getTeamMembers(),
         ]);
     }
 
@@ -69,11 +65,15 @@ class GamesController extends Controller
      * Display the specified resource.
      *
      * @param  Game  $game
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Game $game)
     {
-        //
+        $game->load(['users']);
+
+        return Inertia::render('Games/Show', [
+            'game' => $game,
+        ]);
     }
 
     /**
@@ -84,12 +84,8 @@ class GamesController extends Controller
      */
     public function edit(Game $game)
     {
-        $team = Auth::user()->currentTeam;
-        $users = $team->users;
-        $users->add($team->owner);
-
         return Inertia::render('Games/Edit', [
-            'users' => $users->sortBy('name')->values(),
+            'users' => $this->getTeamMembers(),
             'game' => $game,
             'players' => $game->users->map(function ($user) {
                 return [
@@ -112,12 +108,10 @@ class GamesController extends Controller
     {
         $data = $request->validated();
 
-        $date = Carbon::parse($data['played_at']);
-
         $users = $this->playersToUsers($data['players'], $data['score_blue'], $data['score_red']);
 
         $game->update([
-            'played_at' => $date,
+            'played_at' => $data['played_at'],
             'score_blue' => $data['score_blue'],
             'score_red' => $data['score_red'],
         ]);
@@ -158,5 +152,14 @@ class GamesController extends Controller
                 ]
             ];
         });
+    }
+
+    private function getTeamMembers()
+    {
+        $team = Auth::user()->currentTeam;
+        $users = $team->users;
+        $users->add($team->owner);
+
+        return $users->sortBy('name')->values();
     }
 }
