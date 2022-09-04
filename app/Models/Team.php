@@ -41,4 +41,12 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    public function getTeamMembers()
+    {
+        $members = $this->users;
+        $members->add($this->owner);
+
+        return $members->sortBy('name')->values();
+    }
 }

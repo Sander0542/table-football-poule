@@ -33,7 +33,7 @@ class GamesController extends Controller
     public function create()
     {
         return Inertia::render('Games/Create', [
-            'users' => $this->getTeamMembers(),
+            'users' => Auth::user()->currentTeam->getTeamMembers(),
         ]);
     }
 
@@ -85,7 +85,7 @@ class GamesController extends Controller
     public function edit(Game $game)
     {
         return Inertia::render('Games/Edit', [
-            'users' => $this->getTeamMembers(),
+            'users' => Auth::user()->currentTeam->getTeamMembers(),
             'game' => $game,
             'players' => $game->users->map(function ($user) {
                 return [
@@ -152,14 +152,5 @@ class GamesController extends Controller
                 ]
             ];
         });
-    }
-
-    private function getTeamMembers()
-    {
-        $team = Auth::user()->currentTeam;
-        $users = $team->users;
-        $users->add($team->owner);
-
-        return $users->sortBy('name')->values();
     }
 }
