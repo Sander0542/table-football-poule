@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Games\GameRequest;
 use App\Models\Game;
 use Auth;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
@@ -149,7 +148,7 @@ class GamesController extends Controller
                     'team' => $player['team'],
                     'position' => $player['position'],
                     'winner' => $player['team'] === 'blue' ? $scoreBlue >= $scoreRed : $scoreRed >= $scoreBlue,
-                ]
+                ],
             ];
         });
     }

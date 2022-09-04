@@ -19,6 +19,7 @@
     },
     "common": {
         "action": {
+            "apply": "Apply",
             "cancel": "Cancel",
             "edit": "Edit",
             "save": "Save",
@@ -46,6 +47,14 @@
         }
     },
     "pages": {
+        "dashboard": {
+            "index": {
+                "title": "Dashboard"
+            },
+            "label": {
+                "period": "Period"
+            }
+        },
         "games": {
             "index": {
                 "title": "Matches"
