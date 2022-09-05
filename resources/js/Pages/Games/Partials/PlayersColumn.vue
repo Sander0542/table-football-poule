@@ -6,6 +6,6 @@ defineProps({
 
 <template>
     <p v-for="player in players">
-        <span :class="{'text-red-500': !player.pivot.winner, 'text-green-500': player.pivot.winner}">{{ player.name }}</span>
+        <span :class="`text-${player.pivot.team}-500`">{{ player.name }}</span>
     </p>
 </template>

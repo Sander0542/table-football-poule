@@ -52,7 +52,11 @@
                 "title": "Dashboard"
             },
             "label": {
-                "period": "Period"
+                "period": "Period",
+                "stat": {
+                    "players": "Players",
+                    "teams": "Teams"
+                }
             }
         },
         "games": {
