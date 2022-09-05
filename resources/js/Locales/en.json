@@ -57,6 +57,13 @@
                     "players": "Players",
                     "teams": "Teams"
                 }
+            },
+            "action": {
+                "today": "Today",
+                "week": "Week",
+                "month": "Month",
+                "year": "Year",
+                "all-time": "All Time"
             }
         },
         "games": {

@@ -25,22 +25,32 @@ class DashboardController extends Controller
                     ->orderByDesc('played_at')
                     ->get();
 
+                $gameUsers = $games->pluck('users')->flatten()->groupBy('id');
+
+                $team = $request->user()->currentTeam;
+
                 return [
-                    'players' => $games->pluck('users')
-                        ->flatten()
-                        ->groupBy('id')
-                        ->map(function ($user) {
+                    'players' => $team->getTeamMembers()
+                        ->map(function ($player) use ($gameUsers) {
                             return [
-                                'name' => $user->first()->name,
-                                'games' => $user->count(),
-                                'wins' => $user->filter(function ($user) {
-                                    return $user->pivot->winner;
+                                'player' => $player,
+                                'games' => $gameUsers[$player->id] ?? collect(),
+                            ];
+                        })
+                        ->map(function ($data) {
+                            return [
+                                'name' => $data['player']->name,
+                                'games' => $data['games']->count(),
+                                'wins' => $data['games']->filter(function ($game) {
+                                    return $game->pivot->winner;
                                 })->count(),
-                                'loses' => $user->filter(function ($user) {
-                                    return !$user->pivot->winner;
+                                'losses' => $data['games']->filter(function ($game) {
+                                    return !$game->pivot->winner;
                                 })->count(),
                             ];
-                        })->sortByDesc('wins')
+                        })
+                        ->sortBy('name')
+                        ->sortByDesc('wins')
                         ->values(),
                     'teams' => $games->pipe(function ($games) {
                         return collect([
