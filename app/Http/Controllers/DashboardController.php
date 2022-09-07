@@ -45,7 +45,7 @@ class DashboardController extends Controller
                                     return $game->pivot->winner;
                                 })->count(),
                                 'losses' => $data['games']->filter(function ($game) {
-                                    return !$game->pivot->winner;
+                                    return ! $game->pivot->winner;
                                 })->count(),
                             ];
                         })
@@ -58,13 +58,13 @@ class DashboardController extends Controller
                                 'name' => 'blue',
                                 'score' => $games->filter(function ($game) {
                                     return $game->score_blue >= $game->score_red;
-                                })->count()
+                                })->count(),
                             ],
                             [
                                 'name' => 'red',
                                 'score' => $games->filter(function ($game) {
                                     return $game->score_blue <= $game->score_red;
-                                })->count()
+                                })->count(),
                             ],
                         ]);
                     })->sortDesc()->values(),
