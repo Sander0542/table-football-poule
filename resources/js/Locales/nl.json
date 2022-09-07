@@ -1,20 +1,95 @@
 {
-    "datetimeFormats": {
-        "long": {
-            "day": "numeric",
-            "month": "long",
-            "year": "numeric",
-            "hour": "numeric",
-            "minute": "numeric"
+    "common": {
+        "action": {
+            "apply": "Toepassen",
+            "cancel": "Annuleren",
+            "edit": "Bewerken",
+            "next": "Volgende",
+            "previous": "Vorige",
+            "save": "Opslaan",
+            "view": "Bekijken"
         },
-        "short": {
-            "day": "numeric",
-            "month": "short",
-            "year": "numeric"
+        "label": {
+            "position": {
+                "offense": "Aanval",
+                "defense": "Verdediging"
+            },
+            "winner": "Winnaar",
+            "loser": "Verliezer"
         },
-        "time": {
-            "hour": "numeric",
-            "minute": "numeric"
+        "color": {
+            "red": "Rood",
+            "blue": "Blauw"
+        }
+    },
+    "header": {
+        "dashboard": "Dashboard",
+        "matches": "Wedstrijden",
+        "team": {
+            "settings": "Team instellingen",
+            "create": "Team aanmaken"
+        }
+    },
+    "pages": {
+        "dashboard": {
+            "index": {
+                "title": "Dashboard"
+            },
+            "label": {
+                "period": "Periode",
+                "stat": {
+                    "players": "Spelers",
+                    "teams": "Teams"
+                }
+            },
+            "action": {
+                "today": "Vandaag",
+                "week": "Week",
+                "month": "Maand",
+                "year": "Jaar",
+                "all-time": "Alles"
+            }
+        },
+        "games": {
+            "index": {
+                "title": "Wedstrijden"
+            },
+            "random": {
+                "title": "Willekeurige wedstrijd"
+            },
+            "create": {
+                "title": "Wedstrijd aanmaken"
+            },
+            "edit": {
+                "title": "Wedstrijd bewerken"
+            },
+            "show": {
+                "title": "Wedstrijd"
+            },
+            "label": {
+                "played_at": "Gespeeld op",
+                "score": "Score",
+                "score_blue": "@:pages.games.label.score @:common.color.blue",
+                "score_red": "@:pages.games.label.score @:common.color.red",
+                "blue-vs-red": "@:common.color.blue vs @:common.color.red",
+                "team": "Team",
+                "match": "Wedstrijd",
+                "position": "Positie",
+                "player": "Speler",
+                "players": "Spelers",
+                "choose-player": "Kies een speler",
+                "no-matches": "Geen wedstrijden gevonden",
+                "no-players": "Geen spelers gevonden",
+                "winner-loser": "@:common.label.winner @:common.label.loser"
+            },
+            "action": {
+                "random": "Willekeurige wedstrijd",
+                "create": "Wedstrijd aanmaken"
+            },
+            "error": {
+                "not-enough-players": "Niet genoeg spelers om een wedstrijd te spelen",
+                "too-many-players": "Te veel spelers om een wedstrijd te spelen"
+            }
         }
     }
 }
