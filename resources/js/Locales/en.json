@@ -72,6 +72,9 @@
             "index": {
                 "title": "Matches"
             },
+            "random": {
+                "title": "Random Match"
+            },
             "create": {
                 "title": "Create Match"
             },
@@ -98,7 +101,12 @@
                 "winner-loser": "@:common.label.winner @:common.label.loser"
             },
             "action": {
+                "random": "Random Match",
                 "create": "Create Match"
+            },
+            "error": {
+                "not-enough-players": "Not enough players to create a match",
+                "too-many-players": "Too many players to create a match"
             }
         }
     }

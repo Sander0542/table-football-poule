@@ -10,6 +10,10 @@ defineEmits(['submitted']);
 const props = defineProps({
     users: Array,
     form: Object,
+    playersDisabled: {
+        type: Boolean,
+        default: false,
+    },
 });
 </script>
 
@@ -48,7 +52,7 @@ const props = defineProps({
 
             <SelectControl class="mt-2" v-model="player.id" :label="$t('pages.games.label.player')"
                            :placeholder="$t('pages.games.label.choose-player')"
-                           :error="form.errors[`players.${index}.id`]">
+                           :error="form.errors[`players.${index}.id`]" :disabled="playersDisabled">
                 <option v-for="user in users" :value="user.id" :key="user.id">
                     {{ user.name }}
                 </option>

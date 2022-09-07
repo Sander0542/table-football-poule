@@ -21,5 +21,6 @@ Route::redirect('/', '/dashboard');
 Route::jetstreamMiddleware()->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/games/random', [GamesController::class, 'random'])->name('games.random');
     Route::resource('/games', GamesController::class);
 });

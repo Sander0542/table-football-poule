@@ -9,6 +9,7 @@
                    :class="inputClass"
                    :placeholder="placeholder"
                    :value="modelValue"
+                   :disabled="disabled"
                    :aria-invalid="error != null"
                    :aria-describedby="`${name}-error`"
                    @input="$emit('update:modelValue', $event.target.value)"
@@ -27,7 +28,7 @@ import JetLabel from '@/Components/Jetstream/Label.vue'
 import JetInputError from '@/Components/Jetstream/InputError.vue'
 
 export default defineComponent({
-    props: ['error', 'name', 'label', 'modelValue', 'placeholder', 'type'],
+    props: ['error', 'name', 'label', 'modelValue', 'placeholder', 'type', 'disabled'],
     emits: ['update:modelValue'],
 
     components: {

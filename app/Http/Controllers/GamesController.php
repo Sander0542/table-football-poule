@@ -25,6 +25,18 @@ class GamesController extends Controller
     }
 
     /**
+     * Display a listing of random users for a match.
+     *
+     * @return Response
+     */
+    public function random()
+    {
+        return Inertia::render('Games/Random', [
+            'users' => Auth::user()->currentTeam->getTeamMembers(),
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response
