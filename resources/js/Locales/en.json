@@ -22,6 +22,8 @@
             "apply": "Apply",
             "cancel": "Cancel",
             "edit": "Edit",
+            "next": "Next",
+            "previous": "Previous",
             "save": "Save",
             "view": "View"
         },

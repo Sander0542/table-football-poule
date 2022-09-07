@@ -3,7 +3,7 @@
         <div class="-mt-px w-0 flex-1 flex pl-4">
             <Link :href="pagination.prev_page_url" class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
                 <ArrowNarrowLeftIcon class="mr-3 h-5 w-5 text-gray-400" aria-hidden="true"/>
-                {{ $t('common.table.pagination.previous') }}
+                {{ $t('common.action.previous') }}
             </Link>
         </div>
         <div class="hidden md:-mt-px md:flex">
@@ -15,7 +15,7 @@
         </div>
         <div class="-mt-px w-0 flex-1 flex justify-end pr-4">
             <Link :href="pagination.next_page_url" class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                {{ $t('common.table.pagination.next') }}
+                {{ $t('common.action.next') }}
                 <ArrowNarrowRightIcon class="ml-3 h-5 w-5 text-gray-400" aria-hidden="true"/>
             </Link>
         </div>
