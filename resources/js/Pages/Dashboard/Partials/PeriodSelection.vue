@@ -72,6 +72,10 @@ const setAllTime = () => {
     emit('changed', null, null);
 };
 
+const fromForm = () => {
+    emit('changed', periodStart.value, periodEnd.value);
+};
+
 const getMonday = (d) => {
     d = new Date(d);
     const day = d.getDay(),
@@ -81,7 +85,7 @@ const getMonday = (d) => {
 </script>
 
 <template>
-    <form @submit.prevent="$emit('changed')">
+    <form @submit.prevent="fromForm">
         <Label v-text="$t('pages.dashboard.label.period')"/>
         <div class="flex justify-between">
             <div class="flex">
