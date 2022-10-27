@@ -42,7 +42,7 @@ const stats = reactive({
 
                 <div class="mt-2">
                     <dt class="text-sm font-medium text-gray-500">{{ $t('pages.players.label.win-rate') }}</dt>
-                    <dd class="mt-1 text-sm text-gray-900">{{ Math.round(100 / player.games.length * stats.wins.total.length) }}%</dd>
+                    <dd class="mt-1 text-sm text-gray-900">{{ Math.round(100 / player.games.length * stats.wins.total.length) || 0 }}%</dd>
                 </div>
             </Panel>
 <!--            <div class="col-span-2 gap-4">-->
