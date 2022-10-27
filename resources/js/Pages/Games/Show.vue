@@ -35,10 +35,6 @@ const playersTableLayout = {
 
 <template>
     <AppLayout :title="$t('pages.games.show.title')">
-        <template #header>
-            <TableHeader :title="$t('pages.games.show.title')"/>
-        </template>
-
         <div class="lg:grid grid-cols-3 gap-4">
             <Panel>
                 <template #header>
