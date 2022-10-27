@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -66,5 +67,10 @@ class User extends Authenticatable
             'team',
             'position',
         ]);
+    }
+
+    public function userGames(): HasMany
+    {
+        return $this->hasMany(GameUser::class);
     }
 }

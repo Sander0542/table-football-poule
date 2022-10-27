@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
@@ -42,6 +43,9 @@ class Team extends JetstreamTeam
         'deleted' => TeamDeleted::class,
     ];
 
+    /**
+     * @return User[]|Collection
+     */
     public function getTeamMembers()
     {
         $members = $this->users;
