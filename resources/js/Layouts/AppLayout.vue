@@ -38,6 +38,12 @@ const navigation = [
         href: route('games.index'),
         icon: FolderIcon,
         current: route().current('games.*')
+    },
+    {
+        name: 'header.players',
+        href: route('players.index'),
+        icon: UserGroupIcon,
+        current: route().current('players.*')
     }];
 
 const userNavigation = [

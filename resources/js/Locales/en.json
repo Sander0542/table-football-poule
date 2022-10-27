@@ -43,6 +43,7 @@
     "header": {
         "dashboard": "Dashboard",
         "matches": "Matches",
+        "players": "Players",
         "team": {
             "settings": "Team Settings",
             "create": "Create Team"
@@ -107,6 +108,18 @@
             "error": {
                 "not-enough-players": "Not enough players to create a match",
                 "too-many-players": "Too many players to create a match"
+            }
+        },
+        "players": {
+            "index": {
+                "title": "Players"
+            },
+            "label": {
+                "name": "Name",
+                "wins": "Wins",
+                "games-played": "Games Played",
+                "win-rate": "Win Rate",
+                "no-players": "No players found"
             }
         }
     }

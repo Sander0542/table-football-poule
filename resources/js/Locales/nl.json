@@ -25,6 +25,7 @@
     "header": {
         "dashboard": "Dashboard",
         "matches": "Wedstrijden",
+        "players": "Spelers",
         "team": {
             "settings": "Team instellingen",
             "create": "Team aanmaken"
@@ -89,6 +90,18 @@
             "error": {
                 "not-enough-players": "Niet genoeg spelers om een wedstrijd te spelen",
                 "too-many-players": "Te veel spelers om een wedstrijd te spelen"
+            }
+        },
+        "players": {
+            "index": {
+                "title": "Spelers"
+            },
+            "label": {
+                "name": "Naam",
+                "wins": "Gewonnen",
+                "games-played": "Wedstrijden gespeeld",
+                "no-players": "Geen spelers gevonden",
+                "win-rate": "Winstpercentage"
             }
         }
     }
