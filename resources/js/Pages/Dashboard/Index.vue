@@ -35,6 +35,7 @@ const period = {
 
 const loadStats = (start, end) => {
     Inertia.reload({
+        method: 'post',
         only: ['stats'],
         preserveScroll: true,
         data: {
@@ -64,7 +65,7 @@ const loadStats = (start, end) => {
                 <dl class="lg:grid grid-cols-1 gap-x-4 gap-y-6">
                     <div v-for="player in stats.players">
                         <dt class="text-sm font-medium text-gray-500">{{ player.name }}</dt>
-                        <dd class="mt-1 text-sm text-gray-900">{{ player.wins }}</dd>
+                        <dd class="mt-1 text-sm text-gray-900">{{ player.wins }}/{{ player.total }} ({{ Math.round(100 / player.total * player.wins) }}%)</dd>
                     </div>
                 </dl>
             </Panel>

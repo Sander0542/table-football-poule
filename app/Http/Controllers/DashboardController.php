@@ -47,6 +47,7 @@ class DashboardController extends Controller
                                 'losses' => $data['games']->filter(function ($game) {
                                     return ! $game->pivot->winner;
                                 })->count(),
+                                'total' => $data['games']->count(),
                             ];
                         })
                         ->sortBy('name')
