@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Auth;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class PlayersController extends Controller
@@ -38,7 +37,7 @@ class PlayersController extends Controller
         $user->load(['games']);
 
         return Inertia::render('Players/Show', [
-            'player' => $user
+            'player' => $user,
         ]);
     }
 }
